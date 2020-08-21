@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'main_card.dart';
+import 'debug/main_card.dart';
 //import 'PortFolio.dart';
 //import 'ViewModel/Finance.dart';
 
