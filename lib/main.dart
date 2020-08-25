@@ -151,8 +151,10 @@ class CustomTimerPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    var x_posi = size.width / 2.0;
-    var y_posi = size.height / 2.0;
+    var x_posi = 160.0;
+    //size.width / 2.0;
+    var y_posi = 160.0;
+    //size.height / 2.0;
     var radius = 15.0;
     //size.width / 20.0;
     //Size(width, height)
