@@ -153,22 +153,24 @@ class CustomTimerPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     var x_posi = size.width / 2.0;
     var y_posi = size.height / 2.0;
+    var radius = 15.0;
+    //size.width / 20.0;
     //Size(width, height)
-    var c = Offset(x_posi, y_posi);
+    var c = Offset(x_posi, y_posi); //size.center(Offset.zero)
     Paint paint = Paint()
       ..color = backgroundColor
-      ..strokeWidth = 10.0
+      ..strokeWidth = 5.0
       ..strokeCap = StrokeCap.butt
       ..style = PaintingStyle.stroke;
 
-    canvas.drawCircle(c /*size.center(Offset.zero)*/, size.width / 4.0, paint);
+    canvas.drawCircle(c, radius, paint);
     paint.color = color;
     double progress = (1.0 - animation.value) * 2 * math.pi;
     //canvas.drawArc(Offset.zero & size, math.pi * 1.5, -progress, false, paint);
 
     canvas.drawArc(
         new Rect.fromLTWH(
-            size.width / 4, size.height / 4, size.width / 2, size.height / 2),
+            x_posi - radius, y_posi - radius, radius * 2, radius * 2),
         math.pi * 1.5,
         -progress,
         false,
