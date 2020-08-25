@@ -151,19 +151,53 @@ class CustomTimerPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    var x_posi = size.width / 2.0;
+    var y_posi = size.height / 2.0;
+    //Size(width, height)
+    var c = Offset(x_posi, y_posi);
+    Paint paint = Paint()
+      ..color = backgroundColor
+      ..strokeWidth = 10.0
+      ..strokeCap = StrokeCap.butt
+      ..style = PaintingStyle.stroke;
+
+    canvas.drawCircle(c /*size.center(Offset.zero)*/, size.width / 4.0, paint);
+    paint.color = color;
+    double progress = (1.0 - animation.value) * 2 * math.pi;
+    //canvas.drawArc(Offset.zero & size, math.pi * 1.5, -progress, false, paint);
+
+    canvas.drawArc(
+        new Rect.fromLTWH(
+            size.width / 4, size.height / 4, size.width / 2, size.height / 2),
+        math.pi * 1.5,
+        -progress,
+        false,
+        paint);
+  }
+
+  //rectは、完全な楕円形が内部に記されるものです。
+  //startAngleラインから描画を開始することを楕円形上の場所です。
+  //角度0は右側です。角度はラジアンであり、度ではありません。
+  //上は3π/ 2（または-π/ 2）、左はπ、下はπ/ 2です
+  //これsweepAngleは、円弧に含まれる楕円の大きさです。ここでも、角度はラジアンです。2πの値は、楕円全体を描画します。
+  //useCentertrueに設定すると、円弧の両側から中心への直線になります。
+
+/*
+  void paint(Canvas canvas, Size size) {
+    final rect =
+        Rect.fromLTRB(250.0, 50.0, 270, 70.0 /*size.height*/); //Dot Address
     Paint paint = Paint()
       ..color = Colors.green //backgroundColor
       ..strokeWidth = 3.0 //CircleWidth
       ..strokeCap = StrokeCap.butt
       ..style = PaintingStyle.stroke;
-
-    canvas.drawCircle(
-        size.center(Offset.zero), /*size.width / 2.0*/ 15.0, paint);
+    var c = Offset(250, 50.0);
+    canvas.drawCircle(c, /*size.width / 2.0*/ 15.0, paint);
     paint.color = color;
     double progress = (1.0 - animation.value) * 2 * math.pi;
-    canvas.drawArc(Offset.zero & size, math.pi * 1.5, progress, false, paint);
+    canvas.drawArc(rect, math.pi * 1.5, progress, false, paint);
   }
-
+*/
   @override
   bool shouldRepaint(CustomTimerPainter old) {
     return animation.value != old.animation.value ||
