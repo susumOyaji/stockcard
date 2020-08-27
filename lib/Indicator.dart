@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
 }
 */
 
-
 class CountDownTimer extends StatefulWidget {
   @override
   _CountDownTimerState createState() => _CountDownTimerState();
@@ -50,46 +49,48 @@ class _CountDownTimerState extends State<CountDownTimer>
     ThemeData themeData = Theme.of(context);
     return SafeArea(
       //backgroundColor: Colors.grey,
-      child: Column(//body: 
-      children:[
-        AnimatedBuilder(
-          animation: controller,
-          builder: (context, child) {
-            return Stack(
-              children: <Widget>[
-           
-                //Padding(
-                //  padding: EdgeInsets.all(8.0),
-                //  child:
-                   Column(
-                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      //Expanded(
-                        //child: 
+      child: Column(
+        //body:
+        children: [
+          AnimatedBuilder(
+              animation: controller,
+              builder: (context, child) {
+                return Stack(
+                  children: <Widget>[
+                    //Padding(
+                    //  padding: EdgeInsets.all(8.0),
+                    //  child:
+                    Column(
+                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        //Expanded(
+                        //child:
                         Align(
                           alignment: FractionalOffset.center,
                           //child: AspectRatio(
                           //  aspectRatio: 1.0,
-                            child: Stack(
-                              children: <Widget>[
-                                //Positioned.fill(
-                                  //child:
-                                   CustomPaint(
-                                      painter: CustomTimerPainter(
-                                    animation: controller,
-                                    backgroundColor: Colors.white,
-                                    color: themeData.indicatorColor,
-                                  )),
-                                //),
-                                
-
-                              ],
-                            ),
+                          //child: Stack(
+                          //children: <Widget>[
+                          //Positioned.fill(
+                          child: CustomPaint(
+                              painter: CustomTimerPainter(
+                            animation: controller,
+                            backgroundColor: Colors.white,
+                            color: themeData.indicatorColor,
+                          )),
+                          //),
+                          //],
                           //),
                         ),
-                      //),
-                      
-                      AnimatedBuilder(
+                        //),
+                        //),
+                      ],
+                    ),
+                    /*
+                    Positioned(
+                      right: 0.0,
+                      top: 0.0,
+                      child: AnimatedBuilder(
                           animation: controller,
                           builder: (context, child) {
                             return FloatingActionButton.extended(
@@ -109,18 +110,14 @@ class _CountDownTimerState extends State<CountDownTimer>
                                 label: Text(
                                     controller.isAnimating ? "Pause" : "Play"));
                           }),
-                          
-
-                    ],
-                  ),
-                //),
-              ],
-            );
-          }),
-      ],
-    ),
+                    ),*/
+                    //),
+                  ],
+                );
+              }),
+        ],
+      ),
     );
-      
   }
 }
 
@@ -136,9 +133,9 @@ class CustomTimerPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    var x_posi = 160.0;
+    var x_posi = 0.0;
     //size.width / 2.0;
-    var y_posi = 160.0;
+    var y_posi = 0.0;
     //size.height / 2.0;
     var radius = 15.0;
     //size.width / 20.0;

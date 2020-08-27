@@ -1031,6 +1031,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
+                                      /*
                                       Text(
                                         "Future Vaiue",
                                         style: TextStyle(
@@ -1038,7 +1039,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           color: Colors.grey,
                                           fontWeight: FontWeight.bold,
                                         ),
-                                      ),
+                                      ),*/
+
                                       MaketStandard(
                                         presentValue: presentvalue,
                                         changePriceRate: changePriceRate,
@@ -1101,7 +1103,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                             portassetvalue: gain,
                                             signal: isUpDown,
                                           ),
-                                           CountDownTimer(),
                                         ],
                                       ),
                                     ])),
@@ -1118,8 +1119,13 @@ class _MyHomePageState extends State<MyHomePage> {
                         fontWeight: FontWeight.bold)),
               ),
               Positioned(
-                right: 7.0,
-                top: 8.0,
+                right: 30.0,
+                top: 33.0,
+                child: CountDownTimer(),
+              ),
+              Positioned(
+                right: 157.0,
+                top: 0.0,
                 child: FloatingActionButton.extended(
                   label: Text('60s'),
                   //icon: Icon(Icons.add),
@@ -1128,58 +1134,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     reload();
                   },
                 ),
-                /*
-                  label: Text(""),
-                  icon: Icon(
-                    Icons.update,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    _asyncEditDialog(context, index);
-                  },
-                  onLongPress: () {
-                    alertDialog(index);
-                  },
-                  color: Colors.green,
-                  //textColor: Colors.white,
-                  shape: CircleBorder(
-                    side: BorderSide(
-                      color: Colors.black,
-                      width: 0.0,
-                      style: BorderStyle.solid,
-                    ),
-                  ),
-                ),
-
-                
-                RaisedButton(
-                  child: Text("",
-                      style: TextStyle(fontSize: 10.0, color: Colors.grey)),
-                  color: Colors.purple,
-                  shape: CircleBorder(
-                    side: BorderSide(
-                      color: Colors.black,
-                      width: 0.0,
-                      style: BorderStyle.solid,
-                    ),
-                  ),
-                  onPressed: () {
-                    _asyncEditDialog(context, index);
-                  },
-                  onLongPress: () {
-                    alertDialog(index);
-                  },
-                ),*/
-/*
-                child: IconButton(
-                  icon: Icon(Icons.update),
-                  color: Colors.orange,
-                  iconSize: 50,
-                  onPressed: () {
-                    reload();
-                  },
-                ),
-*/
               ),
               Positioned(
                 right: 5.0,
@@ -1200,7 +1154,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 ),
               ),
-             
             ],
           ),
         ),
