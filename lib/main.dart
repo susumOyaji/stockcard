@@ -64,53 +64,87 @@ class _CountDownTimerState extends State<CountDownTimer>
                     //children: <Widget>[
                     //Expanded(
                     //child:
-                    Align(
-                      alignment: FractionalOffset.center,
-                      //child: AspectRatio(
-                      //  aspectRatio: 1.0,
-                      //child: Stack(
-                      //children: <Widget>[
-                      //Positioned.fill(
-                      child: CustomPaint(
-                          painter: CustomTimerPainter(
-                        animation: controller,
-                        backgroundColor: Colors.white,
-                        color: themeData.indicatorColor,
-                      )),
-                      //),
-                      //],
-                      //),
-                    ),
-                    //),
-                    //),
-                    //],
-                    //),
 
-                    //Positioned(
-                    //right: 0.0,
-                    //top: 0.0,
-                    //child:
-                    RaisedButton(
-                      child: Text("index",
-                          style: TextStyle(fontSize: 10.0, color: Colors.grey)),
-                      color: Colors.purple,
-                      shape: CircleBorder(
-                          /*
+                    Positioned(
+                      left: 44.0,
+                      top: 24.0,
+                      child: Align(
+                        alignment: FractionalOffset.center,
+                        //child: AspectRatio(
+                        //  aspectRatio: 1.0,
+                        //child: Stack(
+                        //children: <Widget>[
+                        //Positioned.fill(
+                        child: CustomPaint(
+                            painter: CustomTimerPainter(
+                          animation: controller,
+                          backgroundColor: Colors.white,
+                          color: themeData.indicatorColor,
+                        )),
+                        //),
+                        //],
+                        //),
+                      ),
+                    ),
+                    Positioned(
+                      left: 50.0,
+                      top: 20.0,
+                      child: Align(
+                        alignment: FractionalOffset.center,
+                        //child: AspectRatio(
+                        //  aspectRatio: 1.0,
+                        //child: Stack(
+                        //children: <Widget>[
+                        //Positioned.fill(
+                        child: CustomPaint(
+                            painter: CustomTimerPainter1(
+                          progress: 0.0,
+                          startColor: Colors.red,
+                          endColor: Colors.yellow,
+                          width: 1.0,
+                          //animation: controller,
+                          //backgroundColor: Colors.white,
+                          //color: themeData.indicatorColor,
+                        )),
+                        //),
+                        //],
+                        //),
+                      ),
+                    ),
+
+                    Positioned(
+                      //left: 10.0,
+                      //top: 0.0,
+                      child: RaisedButton(
+                        child: Text("index",
+                            style:
+                                TextStyle(fontSize: 10.0, color: Colors.grey)),
+                        color: Colors.purple,
+                        shape: CircleBorder(
+                            /*
                           side: BorderSide(
                             color: Colors.black,
                             width: 0.0,
                             style: BorderStyle.solid,
                           ),
                           */
-                          ),
-                      onPressed: () {
-                        //_asyncEditDialog(context, index);
-                      },
-                      onLongPress: () {
-                        //alertDialog(index);
-                      },
+                            ),
+                        onPressed: () {
+                          if (controller.isAnimating)
+                            controller.stop();
+                          else {
+                            controller.reverse(
+                                from: controller.value == 0.0
+                                    ? 1.0
+                                    : controller.value);
+                          }
+                          //_asyncEditDialog(context, index);
+                        },
+                        onLongPress: () {
+                          //alertDialog(index);
+                        },
+                      ),
                     ),
-                    //),
 /*
                     Positioned(
                       //right: 0.0,
@@ -164,7 +198,7 @@ class CustomTimerPainter extends CustomPainter {
     //size.width / 2.0;
     var y_posi = 0.0;
     //size.height / 2.0;
-    var radius = 15.0;
+    var radius = 20.0;
     //size.width / 20.0;
     //Size(width, height)
     var c = Offset(x_posi, y_posi); //size.center(Offset.zero)
@@ -219,8 +253,8 @@ class CustomTimerPainter extends CustomPainter {
   }
 }
 
-class GradientArcPainter extends CustomPainter {
-  const GradientArcPainter({
+class CustomTimerPainter1 extends CustomPainter {
+  const CustomTimerPainter1({
     @required this.progress,
     @required this.startColor,
     @required this.endColor,
