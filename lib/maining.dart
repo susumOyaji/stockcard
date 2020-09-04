@@ -67,10 +67,10 @@ class _CountDownTimerState extends State<CountDownTimer>
                     //Expanded(
                     //child:
                     Positioned(
-                      left: 20.0,
-                      top: 20.0,
-                      width: 100.0,
-                      height: 200.0,
+                      right: 0.0,
+                      //top: 20.0,
+                      //width: 100.0,
+                      //height: 200.0,
                       child: Container(
                         color: Colors.indigo,
                         child: ButtonTheme(
