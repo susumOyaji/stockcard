@@ -614,7 +614,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 color: Colors.yellow),
                           ),
                           Text(
-                            "Gain or Loss　${separation(int.parse(valuableAssetsItems[index]))}",
+                            "Evaluation ${separation(int.parse(valuableAssetsItems[index]))}",
                             style: TextStyle(
                                 //fontFamily: 'Roboto',
                                 fontSize: 12.0,

@@ -503,8 +503,8 @@ class _MyHomePageState extends State<MyHomePage> {
   ///
 
   FixedExtentScrollController fixedExtentScrollController =
-    new FixedExtentScrollController();
-
+      new FixedExtentScrollController();
+/*
   ListWheelScrollView(
   controller: fixedExtentScrollController,
   physics: FixedExtentScrollPhysics(),
@@ -525,7 +525,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }).toList(),
   itemExtent: 60.0,
 ),
-
+*/
   ListView listView() => ListView.builder(
       scrollDirection: Axis.vertical,
       itemCount: codeItems.length, //+20,//<-- setState()
@@ -643,7 +643,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 color: Colors.yellow),
                           ),
                           Text(
-                            "Gain or Loss　${separation(int.parse(valuableAssetsItems[index]))}",
+                            "Assets held ${separation(int.parse(valuableAssetsItems[index]))}",
                             style: TextStyle(
                                 //fontFamily: 'Roboto',
                                 fontSize: 12.0,
@@ -1148,11 +1148,13 @@ class _MyHomePageState extends State<MyHomePage> {
                         fontSize: 20,
                         fontWeight: FontWeight.bold)),
               ),
+              /*
               Positioned(
                 right: 30.0,
                 top: 33.0,
                 child: CountDownTimer(),
               ),
+              */
               Positioned(
                 right: 157.0,
                 top: 0.0,
