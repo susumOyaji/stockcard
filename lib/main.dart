@@ -114,6 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String valueSum;
   String presentvalueSUm;
+  String openTime;
 
   bool _validateCode = false;
   bool _validateStock = false;
@@ -254,8 +255,12 @@ class _MyHomePageState extends State<MyHomePage> {
       //String changePriceRate = "non"; //前日比%;
       //String changePriceValue = "non"; //前日比¥
 
+      RegExp regExp = RegExp(r'> --.{1,}。');
+      openTime = regExp.stringMatch(json).toString(); //name
+      openTime = openTime.replaceAll("> --", "");
+
       String codename;
-      RegExp regExp = RegExp(r'<title>.+【');
+      regExp = RegExp(r'<title>.+【');
       codename = regExp.stringMatch(json).toString(); //name
       codename = codename.replaceAll("<title>", "");
 
@@ -266,6 +271,7 @@ class _MyHomePageState extends State<MyHomePage> {
       //regExp = RegExp(r'[0-9]{1,}.[0-9]{1,}'); //1,234;
       value = regExp.stringMatch(json).toString(); //現在値
 
+      debugPrint("OpenTime:" + openTime);
       debugPrint("StockPrice : " + value);
       debugPrint("string to int : " + intprice.toString());
       debugPrint("hasMatch : " + regExp.hasMatch(json).toString());
@@ -947,55 +953,58 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          ClipPath(
-                            clipper: MyCustomClipper(),
-                            child: Container(
-                                //margin: EdgeInsets.only(top: 0.0, right: 0.0),
-                                padding: EdgeInsets.only(
-                                    top: 0.0,
-                                    left: 20.0,
-                                    right: 0.0,
-                                    bottom: 10.0),
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      //Color(0xffb43af7),
-                                      //Color(0x0B52067),
-                                      Colors.white,
-                                      //Colors.grey[800],
-                                      Colors.grey[800],
+                          GestureDetector(
+                            child: ClipPath(
+                              clipper: MyCustomClipper(),
+                              child: Container(
+                                  //margin: EdgeInsets.only(top: 0.0, right: 0.0),
+                                  padding: EdgeInsets.only(
+                                      top: 0.0,
+                                      left: 20.0,
+                                      right: 0.0,
+                                      bottom: 10.0),
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        //Color(0xffb43af7),
+                                        //Color(0x0B52067),
+                                        Colors.white,
+                                        //Colors.grey[800],
+                                        Colors.grey[800],
 
-                                      //Color(0xff6d2af7),
-                                    ],
-                                  ),
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(10),
-                                    bottomRight: Radius.circular(10),
-                                  ),
-                                ),
-                                child: Row(
-                                  //mainAxisAlignment: MainAxisAlignment.start,
-                                  //mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    Column(
-                                      //mainAxisAlignment: MainAxisAlignment.start,
-                                      //mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "Stocks",
-                                          style: TextStyle(
-                                            fontSize: 30.0,
-                                            color: Colors.orange,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
+                                        //Color(0xff6d2af7),
                                       ],
                                     ),
-                                  ],
-                                )),
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(10),
+                                      bottomRight: Radius.circular(10),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    //mainAxisAlignment: MainAxisAlignment.start,
+                                    //mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Column(
+                                        //mainAxisAlignment: MainAxisAlignment.start,
+                                        //mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "Stocks",
+                                            style: TextStyle(
+                                              fontSize: 30.0,
+                                              color: Colors.orange,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  )),
+                            ),
                           ),
                           Container(
                               margin: EdgeInsets.only(top: 10.0, right: 0.0),
@@ -1052,9 +1061,44 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                 ],
                               )),
+                          Container(
+                              margin: EdgeInsets.only(
+                                  top: 10.0, right: 0.0, bottom: 0.0),
+                              padding: EdgeInsets.all(5.0),
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    //Color(0xffb43af7),
+                                    //Color(0x0B52067),
+                                    Colors.black,
+                                    Colors.grey[800],
+
+                                    //Color(0xff6d2af7),
+                                  ],
+                                ),
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(10),
+                                  bottomRight: Radius.circular(10),
+                                ),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    openTime,
+                                    style: TextStyle(
+                                      fontSize: 8.0,
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              )),
                           GestureDetector(
                             child: Container(
-                                margin: EdgeInsets.only(top: 10.0, right: 0.0),
+                                margin: EdgeInsets.only(top: 5.0, right: 0.0),
                                 padding: EdgeInsets.all(5.0),
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
@@ -1121,7 +1165,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Positioned(
                 right: 0.0,
-                top: 0.0,
+                top: 10.0,
                 child: CountDownTimer(),
               ),
               Positioned(

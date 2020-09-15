@@ -1,7 +1,7 @@
 import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 
+/*
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
+*/
 class CountDownTimer extends StatefulWidget {
   @override
   _CountDownTimerState createState() => _CountDownTimerState();
@@ -72,15 +72,15 @@ class _CountDownTimerState extends State<CountDownTimer>
                       //width: 100.0,
                       //height: 200.0,
                       child: Container(
-                        color: Colors.indigo,
+                        //color: Colors.indigo,
                         child: ButtonTheme(
-                          minWidth: 30.0,
-                          height: 30.0,
+                          minWidth: 40.0,
+                          height: 40.0,
                           child: RaisedButton(
                             child: Text("index",
                                 style: TextStyle(
                                     fontSize: 10.0, color: Colors.grey)),
-                            color: Colors.purple,
+                            color: Colors.orange,
                             shape: CircleBorder(
                               side: BorderSide(
                                 color: Colors.black,
@@ -144,8 +144,8 @@ class _CountDownTimerState extends State<CountDownTimer>
                     ),
                     */
                     Positioned(
-                      right: 27.0,
-                      top: 32.0,
+                      right: 29.0,
+                      top: 24.0,
                       child: Align(
                         alignment: FractionalOffset.center,
                         //child: AspectRatio(
@@ -247,7 +247,7 @@ class CustomTimerPainter extends CustomPainter {
     //size.width / 2.0;
     var y_posi = 0.0;
     //size.height / 2.0;
-    var radius = 20.0;
+    var radius = 18.0;
     //size.width / 20.0;
     //Size(width, height)
     var c = size.center(Offset.zero); //Offset(x_posi, y_posi);
