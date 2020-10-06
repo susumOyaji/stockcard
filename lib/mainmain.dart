@@ -1,25 +1,19 @@
 import 'dart:async';
-//import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
-
 import 'package:stockcard/Clipper.dart';
-
 import 'shared_prefs.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'dart:io' show Platform;
-
 import 'package:flutter/foundation.dart'
     show debugDefaultTargetPlatformOverride;
-//import 'package:flutter/services.dart';
 import 'dart:io';
 import 'MarketStandard.dart';
 import 'PortFolio.dart';
 import 'maining.dart';
 import 'package:intl/intl.dart';
+import 'package:beautifulsoup/beautifulsoup.dart';
 
 //Shift + Alt + F
 
@@ -27,9 +21,9 @@ import 'package:intl/intl.dart';
 //debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
 //  runApp(MyApp1());
 //}
-void main() => runApp(MyApp1());
+void main() => runApp(MyApp());
 
-class MyApp1 extends StatelessWidget {
+class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -113,6 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String valueSum;
   String presentvalueSUm;
+  String openTime;
 
   bool _validateCode = false;
   bool _validateStock = false;
@@ -249,12 +244,31 @@ class _MyHomePageState extends State<MyHomePage> {
               item); //^DJI
       final String json = response.body;
 
+      final soup = Beautifulsoup(response.body);
+
+      //print(soup.attr('tb', attributes["class"])); // .textを追加
+      //print(soup.find_all("td"));
+      //print(soup("td").outerHtml); //soup.title
+      //print(soup("title").localName); //soup.title.name
+      //print(soup("title").text); //soup.title.string
+      //print(soup("title").parent.localName); //soup.title.parent.name
+      //print(soup("p").outerHtml); //soup.title.parent.name
+      //print(soup("td").attributes["class"]); //soup.p['class']
+      //print(soup("stockPrice").attributes["class"]);
+      //print(soup("a").outerHtml); //soup.a
+      //print(soup.get_text()); //soup.get_text()
+      //print(soup.find_all("td").map((e)=> (e.outerHtml)).toList());
+
       int intprice;
       //String changePriceRate = "non"; //前日比%;
       //String changePriceValue = "non"; //前日比¥
 
+      RegExp regExp = RegExp(r'> --.{1,}。');
+      openTime = regExp.stringMatch(json).toString(); //name
+      openTime = openTime.replaceAll("> --", "");
+
       String codename;
-      RegExp regExp = RegExp(r'<title>.+【');
+      regExp = RegExp(r'<title>.+【');
       codename = regExp.stringMatch(json).toString(); //name
       codename = codename.replaceAll("<title>", "");
 
@@ -265,6 +279,7 @@ class _MyHomePageState extends State<MyHomePage> {
       //regExp = RegExp(r'[0-9]{1,}.[0-9]{1,}'); //1,234;
       value = regExp.stringMatch(json).toString(); //現在値
 
+      debugPrint("OpenTime:" + openTime);
       debugPrint("StockPrice : " + value);
       debugPrint("string to int : " + intprice.toString());
       debugPrint("hasMatch : " + regExp.hasMatch(json).toString());
@@ -495,37 +510,7 @@ class _MyHomePageState extends State<MyHomePage> {
       });
 
   //////////////////////////////////////////////////////////////////////
-  ///
-  ///
-  ///
-  ///
-  ///
-  ///
 
-  FixedExtentScrollController fixedExtentScrollController =
-      new FixedExtentScrollController();
-/*
-  ListWheelScrollView(
-  controller: fixedExtentScrollController,
-  physics: FixedExtentScrollPhysics(),
-  children: monthsOfTheYear.map((month) {
-    return Card(
-        child: Row(
-      children: <Widget>[
-        Expanded(
-            child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            month,
-            style: TextStyle(fontSize: 18.0),
-          ),
-        )),
-      ],
-    ));
-  }).toList(),
-  itemExtent: 60.0,
-),
-*/
   ListView listView() => ListView.builder(
       scrollDirection: Axis.vertical,
       itemCount: codeItems.length, //+20,//<-- setState()
@@ -643,7 +628,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 color: Colors.yellow),
                           ),
                           Text(
-                            "Assets held ${separation(int.parse(valuableAssetsItems[index]))}",
+                            "Evaluation ${separation(int.parse(valuableAssetsItems[index]))}",
                             style: TextStyle(
                                 //fontFamily: 'Roboto',
                                 fontSize: 12.0,
@@ -976,55 +961,58 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          ClipPath(
-                            clipper: MyCustomClipper(),
-                            child: Container(
-                                //margin: EdgeInsets.only(top: 0.0, right: 0.0),
-                                padding: EdgeInsets.only(
-                                    top: 0.0,
-                                    left: 20.0,
-                                    right: 0.0,
-                                    bottom: 10.0),
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      //Color(0xffb43af7),
-                                      //Color(0x0B52067),
-                                      Colors.white,
-                                      //Colors.grey[800],
-                                      Colors.grey[800],
+                          GestureDetector(
+                            child: ClipPath(
+                              clipper: MyCustomClipper(),
+                              child: Container(
+                                  //margin: EdgeInsets.only(top: 0.0, right: 0.0),
+                                  padding: EdgeInsets.only(
+                                      top: 0.0,
+                                      left: 20.0,
+                                      right: 0.0,
+                                      bottom: 10.0),
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        //Color(0xffb43af7),
+                                        //Color(0x0B52067),
+                                        Colors.white,
+                                        //Colors.grey[800],
+                                        Colors.grey[800],
 
-                                      //Color(0xff6d2af7),
-                                    ],
-                                  ),
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(10),
-                                    bottomRight: Radius.circular(10),
-                                  ),
-                                ),
-                                child: Row(
-                                  //mainAxisAlignment: MainAxisAlignment.start,
-                                  //mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    Column(
-                                      //mainAxisAlignment: MainAxisAlignment.start,
-                                      //mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "Stocks",
-                                          style: TextStyle(
-                                            fontSize: 30.0,
-                                            color: Colors.orange,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
+                                        //Color(0xff6d2af7),
                                       ],
                                     ),
-                                  ],
-                                )),
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(10),
+                                      bottomRight: Radius.circular(10),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    //mainAxisAlignment: MainAxisAlignment.start,
+                                    //mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Column(
+                                        //mainAxisAlignment: MainAxisAlignment.start,
+                                        //mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "Stocks",
+                                            style: TextStyle(
+                                              fontSize: 30.0,
+                                              color: Colors.orange,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  )),
+                            ),
                           ),
                           Container(
                               margin: EdgeInsets.only(top: 10.0, right: 0.0),
@@ -1081,9 +1069,44 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                 ],
                               )),
+                          Container(
+                              margin: EdgeInsets.only(
+                                  top: 10.0, right: 0.0, bottom: 0.0),
+                              padding: EdgeInsets.all(5.0),
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    //Color(0xffb43af7),
+                                    //Color(0x0B52067),
+                                    Colors.black,
+                                    Colors.grey[800],
+
+                                    //Color(0xff6d2af7),
+                                  ],
+                                ),
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(10),
+                                  bottomRight: Radius.circular(10),
+                                ),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    openTime,
+                                    style: TextStyle(
+                                      fontSize: 8.0,
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              )),
                           GestureDetector(
                             child: Container(
-                                margin: EdgeInsets.only(top: 10.0, right: 0.0),
+                                margin: EdgeInsets.only(top: 5.0, right: 0.0),
                                 padding: EdgeInsets.all(5.0),
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
@@ -1148,13 +1171,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         fontSize: 20,
                         fontWeight: FontWeight.bold)),
               ),
-              
               Positioned(
-                right: 30.0,
-                top: 33.0,
+                right: 0.0,
+                top: 10.0,
                 child: CountDownTimer(),
               ),
-              
               Positioned(
                 right: 157.0,
                 top: 0.0,
