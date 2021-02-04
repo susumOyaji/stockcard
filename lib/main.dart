@@ -289,7 +289,7 @@ class _MyHomePageState extends State<MyHomePage> {
       if (count < 2) {
         regExp = RegExp(r'[+-][0-9,]{1,}.[0-9]{2,}'); //時価（小数点あり）Nikkei
       } else {
-        regExp = RegExp(r'[+-][0-9]{1,}'); //時価（小数点なし）
+        regExp = RegExp(r'[+-][0-9,]{1,}'); //時価（小数点なし）
       }
       //regExp = RegExp(r'(\D{1,3})(?=(\d{3})+(?!\d))'); //value patttan
       //regExp = RegExp(r'["][+-][0-9]{1,}[.][0-9]{1,}');//DOW前日比¥
@@ -579,7 +579,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           RaisedButton(
                         child: Text("${codeItems[index]}",
                             style:
-                                TextStyle(fontSize: 10.0, color: Colors.grey)),
+                                TextStyle(fontSize: 12.0, color: Colors.grey)),
                         color: Colors.purple,
                         shape: CircleBorder(
                             /*
@@ -685,7 +685,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ? '${changePriceRate[index + 2]}'
                                 : '${changePriceValue[index + 2]}',
                             style:
-                                TextStyle(fontSize: 13.0, color: Colors.black),
+                                TextStyle(fontSize: 10.0, color: Colors.black),
                           ),
                           onPressed: () => setState(() {
                             percentcheng[index + 2] = !percentcheng[index + 2];
