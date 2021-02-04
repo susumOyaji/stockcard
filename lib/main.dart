@@ -685,7 +685,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ? '${changePriceRate[index + 2]}'
                                 : '${changePriceValue[index + 2]}',
                             style:
-                                TextStyle(fontSize: 10.0, color: Colors.black),
+                                TextStyle(fontSize: 12.0, color: Colors.black),
                           ),
                           onPressed: () => setState(() {
                             percentcheng[index + 2] = !percentcheng[index + 2];
