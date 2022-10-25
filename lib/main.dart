@@ -303,7 +303,7 @@ class _MyHomePageState extends State<MyHomePage> {
     //print('Response body: ${response.body}');
     String json = response.body;
 
-    RegExp changePriceRate = RegExp(r'<span class="_3bYcwOHa">.*?</span>');
+    RegExp changePriceRate = RegExp(r'<span class="_3wVTceYe">.*?</span>');
 
     List<String?> changepriceRate = changePriceRate
         .allMatches(json)
@@ -313,7 +313,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     List<String> tmp = [];
     for (int i = 0; i < changepriceRate.length; i++) {
-      tmp.add(changepriceRate[i]!.replaceAll(RegExp("_3bYcwOHa"), ""));
+      tmp.add(changepriceRate[i]!.replaceAll(RegExp("_3wVTceYe"), ""));
     }
 
     for (int i = 0; i < 3; i++) {
