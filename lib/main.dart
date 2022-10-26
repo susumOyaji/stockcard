@@ -1284,8 +1284,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                         CrossAxisAlignment.center,
                                     children: <Widget>[
                                       Icon(
-                                        MyFlutterApp.yen,
-                                        //Icons.attach_money,
+                                        //MyFlutterApp.yen,
+                                        Icons.attach_money,
                                         size: 35,
                                         color: Colors.grey,
                                       ),
