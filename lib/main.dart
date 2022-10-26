@@ -322,7 +322,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     //_3-jsuWIU
     RegExp regpola =
-        RegExp(r'<span class="_3-jsuWIU"><span>.*?</span>'); //_2sEIIq9H
+        RegExp(r'<span class="_36MsoxMh"><span>.*?</span>'); //_2sEIIq9H
     List<String> pola =
         regpola.allMatches(json).map((match) => match.group(0)).toList().cast();
     String del = pola[0].replaceAll(RegExp("_3-"), ""); //mark"_3-" to delet
