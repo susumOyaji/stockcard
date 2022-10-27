@@ -34,14 +34,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false, // <- Debug の 表示を OFF
       title: 'Flutter Demo',
-      theme: new ThemeData(
+      theme: ThemeData(
         primarySwatch: Colors.blue,
         //fontFamily: 'Kosugi',
       ),
-      home: new MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
@@ -82,7 +82,7 @@ int toIntger(String char) {
 }
 
 String separation(int number) {
-  final matcher = new RegExp(r'(\d+)(\d{3})');
+  final matcher = RegExp(r'(\d+)(\d{3})');
 
   String firstpart = number.toString();
   while ((firstpart).contains(matcher)) {
@@ -195,7 +195,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   getProgressDialog() {
-    return new Center(child: new CircularProgressIndicator());
+    return Center(child: new CircularProgressIndicator());
   }
 
   showLoadingDialog() {
@@ -339,29 +339,27 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String _getmarkettime() {
     initializeDateFormatting('ja');
-    var format = new DateFormat.yMMMd('ja');
+    var format = DateFormat.yMMMd('ja');
 
     //1. 2つの日付の差は何日ですか？
-    var startDate = new DateTime(2020, 12, 20);
-    var endDate = new DateTime.now();
+    var startDate = DateTime(2020, 12, 20);
+    var endDate = DateTime.now();
     var days = endDate.difference(startDate).inDays;
     print("days: $days");
 
     //2. 2つの日付の差は何時間ですか？
-    var startDate2 = new DateTime(2020, 12, 20);
-    var endDate2 = new DateTime.now();
+    var startDate2 = DateTime(2020, 12, 20);
+    var endDate2 = DateTime.now();
     var hours = endDate2.difference(startDate2).inHours;
     print("hours2: $hours");
 
     //3. 2つの日付の差は何分ですか？
-    var now3 = new DateTime(jstnow.year, jstnow.month, jstnow.day,
-        jstnow.hour - 9, jstnow.minute, jstnow.second);
+    var now3 = DateTime(jstnow.year, jstnow.month, jstnow.day, jstnow.hour - 9,
+        jstnow.minute, jstnow.second);
 
-    var startDate3 =
-        new DateTime(jstnow.year, jstnow.month, jstnow.day, 9, 0, 0);
+    var startDate3 = DateTime(jstnow.year, jstnow.month, jstnow.day, 9, 0, 0);
 
-    var endDate3 =
-        new DateTime(jstnow.year, jstnow.month, jstnow.day, 15, 0, 0);
+    var endDate3 = DateTime(jstnow.year, jstnow.month, jstnow.day, 15, 0, 0);
 
     final after = endDate3.difference(now3);
     final toyear = after; //openTime
@@ -582,14 +580,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
 ////////////////////////////////////////////////////
 
-  GridView gridView() => new GridView.builder(
+  GridView gridView() => GridView.builder(
       scrollDirection: Axis.vertical,
       itemCount: codeItems.length, //+20,//<-- setState()
       gridDelegate:
-          new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
       itemBuilder: (BuildContext context, int index) {
-        return new GestureDetector(
-          child: new Card(
+        return GestureDetector(
+          child: Card(
             margin: const EdgeInsets.all(5.0),
             color: Colors.grey[850],
             elevation: 5.0,
@@ -599,14 +597,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                         top: 0.0, right: 0.0, bottom: 0.0, left: 50.0),
                     child: InkWell(
                       onTap: () {
                         _deleteCard(index);
                         debugPrint("index No:${index}to Delet clicked");
                       },
-                      child: Icon(
+                      child: const Icon(
                         Icons.delete,
                         size: 15,
                         color: Colors.grey,
@@ -615,51 +613,51 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Text(
                     "(${codeItems[index]}) " + "${code[index + 2]}",
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontFamily: 'Roboto-Thin',
                         fontSize: 8.0,
                         color: Colors.orange),
                   ),
                   Text(
                     "Present ${presentvalue[index + 2]}",
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontFamily: 'Roboto',
                         fontSize: 8.0,
                         color: Colors.blue),
                   ),
                   Text(
                     "Profit　${benefits[index]}",
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontFamily: 'Roboto',
                         fontSize: 8.0,
                         color: Colors.yellow),
                   ),
                   Text(
                     "Loss　${separation(int.parse(valuableAssetsItems[index]))}",
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontFamily: 'Roboto',
                         fontSize: 8.0,
                         color: Colors.orange),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                         top: 8.0, right: 0.0, bottom: 0.0, left: 0.0),
                     child: SizedBox(
                       height: 15.0,
                       width: 65.0,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.all(0.0),
+                          padding: const EdgeInsets.all(0.0),
                           primary: signalstate[index + 2]
                               ? Colors.red
                               : Colors.green, //Colors.orange,
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(2.0)),
                           ),
                           //backgroundColor:signalstate[index + 2] ? Colors.red : Colors.green,
                         ),
-                        child: new Text(
+                        child: Text(
                           signalstate[index]
                               ? '${changePriceValue[index + 2]}'
                               : '${changePriceRate[index + 2]}',
@@ -687,8 +685,8 @@ class _MyHomePageState extends State<MyHomePage> {
       itemBuilder: (BuildContext context, int index) {
         return GestureDetector(
           child: Container(
-              margin: EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
-              padding: EdgeInsets.all(5.0),
+              margin: const EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
+              padding: const EdgeInsets.all(5.0),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
@@ -699,7 +697,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Colors.grey.shade800,
                   ],
                 ),
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(10),
                   bottomRight: Radius.circular(10),
                 ),
@@ -754,13 +752,13 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           Text(
                             "${code[index]}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 12.0,
                               color: Colors.grey,
                               fontFamily: 'NoteSansJP',
                               fontWeight: FontWeight.bold,
                             ),
-                            strutStyle: StrutStyle(
+                            strutStyle: const StrutStyle(
                               fontSize: 10.0,
                               height: 1.0,
                             ),
@@ -769,14 +767,14 @@ class _MyHomePageState extends State<MyHomePage> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text("Market: ${presentvalue[index]}",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontFamily: 'NotoSansJP',
                                       fontSize: 12.0,
                                       color: Colors.blue),
                                   textAlign: TextAlign.left),
                               Text(
                                 "Benefits: ${benefits[index]}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontFamily: 'NoteSansJP',
                                     //fontWeight: FontWeight.bold,
                                     fontSize: 12.0,
@@ -786,7 +784,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           Text(
                             "Evaluation: ${separation(int.parse(valuableAssetsItems[index]))}",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontFamily: 'NoteSansJP',
                                 //fontWeight: FontWeight.bold,
                                 fontSize: 12.0,
@@ -799,7 +797,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Expanded(
                       flex: 2,
                       child: Padding(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                             top: 0.0, right: 0.0, bottom: 0.0, left: 0.0),
                         //child: //SizedBox(
                         //height: 30.0,
@@ -808,7 +806,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           style: TextButton.styleFrom(
                             padding: EdgeInsets.all(0.0),
                             primary: Colors.orange,
-                            shape: RoundedRectangleBorder(
+                            shape: const RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(2.0)),
                             ),
@@ -838,16 +836,16 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder: (_) {
         return AlertDialog(
-          title: Text("Check"),
+          title: const Text("Check"),
           content: Text("${code[_index]}" + " to Can I delete it?"),
           actions: <Widget>[
             // ボタン領域
             TextButton(
-              child: Text("Cancel"),
+              child: const Text("Cancel"),
               onPressed: () => Navigator.pop(context),
             ),
             TextButton(
-                child: Text("OK"),
+                child: const Text("OK"),
                 onPressed: () {
                   _deleteCard(_index);
                   Navigator.pop(context);
@@ -878,7 +876,7 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.grey,
-          title: Text('Enter an investment estimate'),
+          title: const Text('Enter an investment estimate'),
           content: Column(
             children: <Widget>[
               Expanded(
@@ -886,7 +884,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       keyboardType: TextInputType.number, // キーボードは数値のみ
                       controller: codeCtrl,
                       autofocus: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           labelText: 'Code Namber',
                           hintText: 'Enter the number of 4 digits'),
                       onSubmitted: (text) {
@@ -904,7 +902,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 keyboardType: TextInputType.number, // キーボードは数値のみ
                 controller: stockCtrl,
                 autofocus: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     labelText: 'Stock', hintText: 'Enter the number of shares'),
                 onSubmitted: (text) {
                   if (text.isEmpty) {
@@ -925,7 +923,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       keyboardType: TextInputType.number, // キーボードは数値のみ
                       controller: valueCtrl,
                       autofocus: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           labelText: 'Value',
                           hintText: 'Enter the amount acquired per share'),
                       onChanged: (value) {
@@ -949,7 +947,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Ok'),
+              child: const Text('Ok'),
               onPressed: () {
                 if (/*eCtrl.text.isEmpty ||*/ codeCtrl.text.isEmpty ||
                     stockCtrl.text.isEmpty ||
@@ -1003,7 +1001,7 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.grey,
-          title: Text('Edit an investment Data'),
+          title: const Text('Edit an investment Data'),
           content: Column(
             children: <Widget>[
               Expanded(
@@ -1011,7 +1009,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       keyboardType: TextInputType.number, // キーボードは数値のみ
                       controller: _codeFieldController,
                       autofocus: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           labelText: 'Code : ',
                           border: OutlineInputBorder(),
                           hintText: 'If you want to change it, enter a value'),
@@ -1036,7 +1034,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 keyboardType: TextInputType.number, // キーボードは数値のみ
                 controller: _stackFieldController,
                 autofocus: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     labelText: 'Stock : ',
                     border: OutlineInputBorder(),
                     hintText: 'If you want to change it, enter a value'),
@@ -1062,7 +1060,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       keyboardType: TextInputType.number, // キーボードは数値のみ
                       controller: _valueFieldController,
                       autofocus: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           labelText: 'Value : ',
                           border: OutlineInputBorder(),
                           hintText: 'If you want to change it, enter a value'),
@@ -1086,7 +1084,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Return'),
+              child: const Text('Return'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -1099,8 +1097,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   todayDate() {
     //new DateFormat.M();
-    var now = new DateTime.now();
-    var formatter = new DateFormat('LLLLL-yyyy');
+    var now = DateTime.now();
+    var formatter = DateFormat('LLLLL-yyyy');
     String formattedTime = DateFormat('kk:mm:a').format(now);
     String formattedDate = formatter.format(now);
     //String formattedMouth = new DateFormat.M();
@@ -1114,12 +1112,12 @@ class _MyHomePageState extends State<MyHomePage> {
       children: <Widget>[
         Container(
           //width: 280,
-          margin: EdgeInsets.all(0.0),
-          padding: EdgeInsets.only(left: 10.0, right: 10.0),
+          margin: const EdgeInsets.all(0.0),
+          padding: const EdgeInsets.only(left: 10.0, right: 10.0),
           child: Stack(
             children: <Widget>[
               Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   width: MediaQuery.of(context).size.width,
                   color: Colors.black,
                   child: SafeArea(
@@ -1131,7 +1129,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               clipper: MyCustomClipper(),
                               child: Container(
                                   //margin: EdgeInsets.only(top: 0.0, right: 0.0),
-                                  padding: EdgeInsets.only(
+                                  padding: const EdgeInsets.only(
                                       top: 0.0,
                                       left: 20.0,
                                       right: 0.0,
@@ -1148,7 +1146,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         //Color(0xff6d2af7),
                                       ],
                                     ),
-                                    borderRadius: BorderRadius.only(
+                                    borderRadius: const BorderRadius.only(
                                       topRight: Radius.circular(10),
                                       bottomRight: Radius.circular(10),
                                     ),
@@ -1164,7 +1162,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         //mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
-                                        children: [
+                                        children: const [
                                           Text(
                                             "Stocks",
                                             style: TextStyle(
@@ -1180,8 +1178,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                           Container(
-                              margin: EdgeInsets.only(top: 10.0, right: 0.0),
-                              padding: EdgeInsets.all(5.0),
+                              margin:
+                                  const EdgeInsets.only(top: 10.0, right: 0.0),
+                              padding: const EdgeInsets.all(5.0),
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   colors: [
@@ -1193,7 +1192,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //Color(0xff6d2af7),
                                   ],
                                 ),
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topRight: Radius.circular(10),
                                   bottomRight: Radius.circular(10),
                                 ),
@@ -1203,7 +1202,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 //mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
-                                  Icon(
+                                  const Icon(
                                     Icons.trending_up,
                                     size: 42,
                                     color: Colors.grey,
@@ -1222,9 +1221,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ],
                               )),
                           Container(
-                              margin: EdgeInsets.only(
+                              margin: const EdgeInsets.only(
                                   top: 10.0, right: 0.0, bottom: 0.0),
-                              padding: EdgeInsets.all(5.0),
+                              padding: const EdgeInsets.all(5.0),
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   colors: [
@@ -1236,7 +1235,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //Color(0xff6d2af7),
                                   ],
                                 ),
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topRight: Radius.circular(10),
                                   bottomRight: Radius.circular(10),
                                 ),
@@ -1248,7 +1247,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 children: [
                                   Text(
                                     openTime,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 8.0,
                                       fontFamily: 'NotoSansJP',
                                       //fontWeight: FontWeight.w900,
@@ -1260,8 +1259,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               )),
                           GestureDetector(
                             child: Container(
-                                margin: EdgeInsets.only(top: 5.0, right: 0.0),
-                                padding: EdgeInsets.all(5.0),
+                                margin:
+                                    const EdgeInsets.only(top: 5.0, right: 0.0),
+                                padding: const EdgeInsets.all(5.0),
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [
@@ -1272,7 +1272,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       Colors.grey.shade800,
                                     ],
                                   ),
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                     topRight: Radius.circular(10),
                                     bottomRight: Radius.circular(10),
                                   ),
@@ -1283,7 +1283,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: <Widget>[
-                                      Icon(
+                                      const Icon(
                                         MyFlutterApp.yen,
                                         //Icons.attach_money,
                                         size: 35,
@@ -1295,7 +1295,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          Text(
+                                          const Text(
                                             "Market capitalization", //"Investment",
                                             style: TextStyle(
                                               fontSize: 20.0,
@@ -1322,7 +1322,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 left: 150.0,
                 top: 4.0,
                 child: Text(currentmonth /*+ '  ' + now.month.toString()*/,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.black,
                         fontSize: 15,
                         fontWeight: FontWeight.bold)),
@@ -1335,7 +1335,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.orange, // button color
                     child: InkWell(
                       splashColor: Colors.red, // inkwell color
-                      child: SizedBox(
+                      child: const SizedBox(
                           width: 45, height: 45, child: Icon(Icons.autorenew)),
                       onTap: () {
                         reload();
@@ -1348,7 +1348,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 right: 5.0,
                 bottom: 35.0,
                 child: IconButton(
-                  icon: Icon(Icons.grain),
+                  icon: const Icon(Icons.grain),
                   color: Colors.blueGrey,
                   iconSize: 40,
                   onPressed: () {
