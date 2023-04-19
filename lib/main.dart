@@ -27,7 +27,7 @@ import 'package:intl/date_symbol_data_local.dart';
 //  runApp(MyApp1());
 //}
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -52,7 +52,7 @@ class MyHomePage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 void _setTargetPlatformForDesktop() {
@@ -195,11 +195,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   getProgressDialog() {
-    return Center(child: new CircularProgressIndicator());
+    return const Center(child: CircularProgressIndicator());
   }
 
   showLoadingDialog() {
-    if (widgets.length == 0) {
+    if (widgets.isEmpty) {
       return true;
     }
     return false;
@@ -659,9 +659,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         child: Text(
                           signalstate[index]
-                              ? '${changePriceValue[index + 2]}'
-                              : '${changePriceRate[index + 2]}',
-                          style: TextStyle(fontSize: 8.0, color: Colors.black),
+                              ? '$changePriceValue[index + 2]'
+                              : '$changePriceRate[index + 2]',
+                          style: const TextStyle(
+                              fontSize: 8.0, color: Colors.black),
                         ),
                         onPressed: () => setState(() {
                           //widgets[index].percentcheng = !widgets[index].percentcheng;
@@ -720,15 +721,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
                           //child:
                           ElevatedButton(
-                        child: Text("${codeItems[index]}",
-                            style: TextStyle(
-                              fontSize: 10.0,
-                              color: Colors.black,
-                              fontFamily: 'NotoSansJP',
-                            )),
                         style: ElevatedButton.styleFrom(
                           primary: Colors.purple, //ボタンの背景色
-                          shape: CircleBorder(),
+                          shape: const CircleBorder(),
                         ),
                         onPressed: () {
                           _asyncEditDialog(context, index);
@@ -736,6 +731,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         onLongPress: () {
                           alertDialog(index);
                         },
+                        child: Text("${codeItems[index]}",
+                            style: const TextStyle(
+                              fontSize: 10.0,
+                              color: Colors.black,
+                              fontFamily: 'NotoSansJP',
+                            )),
                       ),
                     ),
 
@@ -804,7 +805,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         //width: 60.0,
                         child: TextButton(
                           style: TextButton.styleFrom(
-                            padding: EdgeInsets.all(0.0),
+                            padding: const EdgeInsets.all(0.0),
                             primary: Colors.orange,
                             shape: const RoundedRectangleBorder(
                               borderRadius:
@@ -817,8 +818,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             percentcheng[index] //signalstate[index]
                                 ? '${changePriceRate[index]}%'
                                 : '${changePriceValue[index]}',
-                            style:
-                                TextStyle(fontSize: 13.0, color: Colors.black),
+                            style: const TextStyle(
+                                fontSize: 13.0, color: Colors.black),
                           ),
                           onPressed: () => setState(() {
                             percentcheng[index] = !percentcheng[index];
@@ -837,7 +838,7 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (_) {
         return AlertDialog(
           title: const Text("Check"),
-          content: Text("${code[_index]}" + " to Can I delete it?"),
+          content: Text("${code[_index]} to Can I delete it?"),
           actions: <Widget>[
             // ボタン領域
             TextButton(

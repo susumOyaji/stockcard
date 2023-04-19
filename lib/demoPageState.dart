@@ -13,7 +13,7 @@ class _DemoPageState extends State<DemoPage> {
       child: Stack(
         children: <Widget>[
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('images/new_york.jpg'),
                 fit: BoxFit.fitHeight,
@@ -30,9 +30,9 @@ class _DemoPageState extends State<DemoPage> {
                 borderRadius: BorderRadius.circular(8.0),
               ),
               child: Column(
-                children: <Widget>[
+                children: const <Widget>[
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: EdgeInsets.all(16.0),
                     child: Text(
                       "New York",
                       style: TextStyle(
@@ -42,7 +42,7 @@ class _DemoPageState extends State<DemoPage> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: EdgeInsets.all(16.0),
                     child: Text(
                         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
                   ),
