@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+//import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 import 'package:stockcard/Clipper.dart';
 import 'shared_prefs.dart';
-import 'package:flutter/cupertino.dart';
+//import 'package:flutter/cupertino.dart';
 import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart'
     show debugDefaultTargetPlatformOverride;
@@ -41,13 +41,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         //fontFamily: 'Kosugi',
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({
+  const MyHomePage({
     Key? key,
   }) : super(key: key);
 
@@ -339,7 +339,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String _getmarkettime() {
     initializeDateFormatting('ja');
-    var format = DateFormat.yMMMd('ja');
+    //var format = DateFormat.yMMMd('ja');
 
     //1. 2つの日付の差は何日ですか？
     var startDate = DateTime(2020, 12, 20);
@@ -591,7 +591,7 @@ class _MyHomePageState extends State<MyHomePage> {
             margin: const EdgeInsets.all(5.0),
             color: Colors.grey[850],
             elevation: 5.0,
-            child: Container(
+            //child: Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -612,7 +612,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   Text(
-                    "(${codeItems[index]}) " + "${code[index + 2]}",
+                    "(${codeItems[index]}) ${code[index + 2]}",
                     style: const TextStyle(
                         fontFamily: 'Roboto-Thin',
                         fontSize: 8.0,
@@ -672,7 +672,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
-            ),
+            //),
           ),
         );
       });
